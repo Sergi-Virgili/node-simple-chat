@@ -24,7 +24,7 @@ Create a .env file in the root directory and add the following variables.
 Clone the repository and install the dependencies.
 
 ```
-git clone <repo>
+git clone https://github.com/Sergi-Virgili/node-simple-chat.git
 
 npm install
 ```
