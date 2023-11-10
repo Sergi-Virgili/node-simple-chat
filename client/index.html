@@ -5,13 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Node Chat</title>
     <link rel="stylesheet" href="./styles.css">
+
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
+        const socket = io()
+
+        socket.on("chat message", (msg) => {
+            const messages = document.getElementById("messages")
+            const item = `<li>${msg}</li>`
+            messages.insertAdjacentHTML('beforeend',item)
+            console.log(msg);
+        });
+
+        const form = document.getElementById("form")
+        const input = document.getElementById("input")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            if (input.value) {
+                socket.emit("chat message", input.value)
+                input.value = ""
+            }
+        })
+
+    </script>
 </head>
 <body>
     <main>
         <ul id="messages">
-            <li>Message 1</li>
-            <li>Message 2</li>
-            <li>Message 3</li> 
         </ul>
         <form id="form" action="">
             <input type="text" name="message" id="input"> <button type="submit">Send</button>
