@@ -12,6 +12,7 @@ Node.js and npm are essential to run this application.
 
 ### Database
 
+Use Sqlite3 to create a database file in the root directory.
 
 
 ### env
@@ -42,7 +43,7 @@ npm run dev
 * [Node.js](https://nodejs.org/en/) - JavaScript runtime
 * [Express](https://expressjs.com/) - Web framework
 * [Socket.io](https://socket.io/) - Real-time engine
-
+* [Sqlite3](https://www.sqlite.org/) - Database engine
 
 ## Acknowledgments
 
