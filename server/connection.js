@@ -95,5 +95,6 @@ async function test() {
   await db.close();
 }
 
-test();
+export default Database;
+
 

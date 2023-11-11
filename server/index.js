@@ -3,6 +3,7 @@ import logger from "morgan";
 
 import { Server } from "socket.io";
 import { createServer } from "node:http";
+import Database from "./connection.js";
 
 const port = process.env.PORT ?? 3000;
 
@@ -13,6 +14,10 @@ const io = new Server(server);
 app.use(logger("dev"));
 app.use(express.static('client'));
 
+const db = new Database()
+await db.open();
+await db.createTable();
+
 io.on("connection", (socket) => {
   console.log("a user connected");
   
@@ -20,7 +25,8 @@ io.on("connection", (socket) => {
     console.log("user disconnected");
   })
 
-  socket.on("chat message", (msg) => {
+  socket.on("chat message", async (msg) => {
+    await db.insert(msg);
     console.log("message: " + msg);
     io.emit("chat message", msg);
   })
