@@ -73,7 +73,7 @@ class Database {
       
       this.db.all(`
         SELECT * FROM messages WHERE id > ?
-      `, [lastID], (err, rows) => {
+      `, [lastID ?? 0], (err, rows) => {
         if (err) {
           reject(err);
         } else {
