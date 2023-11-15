@@ -10,9 +10,9 @@
         import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
         const socket = io()
 
-        socket.on("chat message", (msg) => {
+        socket.on("chat message", (msg, id) => {
             const messages = document.getElementById("messages")
-            const item = `<li>${msg}</li>`
+            const item = `<li>${id} - ${msg}</li>`
             messages.insertAdjacentHTML('beforeend',item)
             console.log(msg);
         });
