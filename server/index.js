@@ -26,9 +26,9 @@ io.on("connection", (socket) => {
   })
 
   socket.on("chat message", async (msg) => {
-    await db.insert(msg);
+    const newMessage = await db.insert(msg);
     console.log("message: " + msg);
-    io.emit("chat message", msg);
+    io.emit("chat message", msg, newMessage.lastID);
   })
 
 })
