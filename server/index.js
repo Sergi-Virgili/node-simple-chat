@@ -18,7 +18,7 @@ const db = new Database()
 await db.open();
 await db.createTable();
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log("a user connected");
   
   socket.on("disconnect", () => {
@@ -30,6 +30,16 @@ io.on("connection", (socket) => {
     console.log("message: " + msg);
     io.emit("chat message", msg, newMessage.lastID);
   })
+
+  if (!socket.recovered) {
+    socket.recovered = true;
+    const messages = await db.getAllMessages(socket.handshake.auth.serverOffset);
+    
+    for (const message of messages) {
+      socket.emit("chat message", message.message, message.id);
+    }
+  
+  }
 
 })
 
