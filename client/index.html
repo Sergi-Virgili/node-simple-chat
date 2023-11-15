@@ -16,7 +16,7 @@
 
         socket.on("chat message", (msg, lastID) => {
             const messages = document.getElementById("messages")
-            const item = `<li>${id} - ${msg}</li>`
+            const item = `<li>${lastID} - ${msg}</li>`
             messages.insertAdjacentHTML('beforeend',item)
             socket.auth.serverOffset = lastID
         });
