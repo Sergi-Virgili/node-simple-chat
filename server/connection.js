@@ -66,14 +66,14 @@ class Database {
     })
   }
 
-  async getAllMessages() {
+  async getAllMessages(lastID) {
     return new Promise((resolve, reject) => {
       // RESOLVE: resolve the promise with the rows
       // REJECT: reject the promise with the error
       
       this.db.all(`
-        SELECT * FROM messages
-      `, [], (err, rows) => {
+        SELECT * FROM messages WHERE id > ?
+      `, [lastID], (err, rows) => {
         if (err) {
           reject(err);
         } else {
