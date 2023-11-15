@@ -6,7 +6,7 @@ class Database {
 
   constructor() {
     (async () => {
-      this.db = new sqlite3.Database('./server/db.sqlite');
+      this.db = new sqlite3.Database('./db.sqlite');
     })();
   }
 
@@ -50,22 +50,21 @@ class Database {
     } )
   }
 
-  // Insert a message into the database
-  insert(message) {
-    return new Promise((resolve, reject) => { 
+  // Insert a message into the database and return the id
+
+  async insert(message) {
+    return new Promise((resolve, reject) => {
       this.db.run(`
         INSERT INTO messages (message) VALUES (?)
-      `, [message], (err) => {
+      `, [message], function(err) {
         if (err) {
           reject(err);
         } else {
-          resolve();
+          resolve(this);
         }
       })
-    } )
+    })
   }
-
-  // retrieve all messages from the database
 
   async getAllMessages() {
     return new Promise((resolve, reject) => {
@@ -90,7 +89,7 @@ async function test() {
   db.insert("Hello world!");
   db.insert("Hello world!");
   db.insert("Hello world!");
-  db.insert("Hello world!");
+  console.log(await db.insert("Hello world!"));
   console.log(await db.getAllMessages());
   await db.close();
 }
