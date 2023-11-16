@@ -12,6 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 * Sende Messages
 * Recover Messages
 * Save messages in database
+* Scroll to bootom when new message is received
 
 ### Prerequisites
 
