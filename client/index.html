@@ -19,6 +19,8 @@
             const item = `<li>${msg}</li>`
             messages.insertAdjacentHTML('beforeend',item)
             socket.auth.serverOffset = lastID
+
+            messages.scrollTop = messages.scrollHeight
         });
 
         const form = document.getElementById("form")
