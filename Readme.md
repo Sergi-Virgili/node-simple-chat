@@ -6,6 +6,13 @@ This is a simple chat application built on Node.js using Socket.io.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+## Features
+
+* Real-time Chat
+* Sende Messages
+* Recover Messages
+* Save messages in database
+
 ### Prerequisites
 
 Node.js and npm are essential to run this application.
@@ -55,6 +62,6 @@ npm run dev
 
 
 
-Min 48:00
+
 
 https://www.youtube.com/watch?v=WpbBhTx5R9Q
